@@ -7,10 +7,20 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fahimjason/typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fahimjason/typescript/issues"
+  },
+  "homepage": "https://github.com/fahimjason/typescript#readme",
   "description": ""
 }
