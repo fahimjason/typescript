@@ -1,0 +1,7 @@
+.cache
+.vscode
+.env
+dist
+node_modules
+tmpnodejsnpm-cache
+package-lock.json
