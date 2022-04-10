@@ -21,9 +21,9 @@ export class Collection {
             response.data.forEach((value: UserProps) => {
                 const user = User.buildUser(value);
                 this.models.push(user);
+            });
 
-                this.trigger('change');
-            })
+            this.trigger('change');
         })
     }
 }

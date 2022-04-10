@@ -24,8 +24,8 @@ class Collection {
             response.data.forEach((value) => {
                 const user = User_1.User.buildUser(value);
                 this.models.push(user);
-                this.trigger('change');
             });
+            this.trigger('change');
         });
     }
 }
