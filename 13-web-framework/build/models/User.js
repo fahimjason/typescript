@@ -24,5 +24,23 @@ class User {
         this.attributes.set(update);
         this.events.trigger('change');
     }
+    fetch() {
+        const id = this.get('id');
+        if (typeof id !== 'number') {
+            throw new Error('Can not fetch without an id.');
+        }
+        this.sync.fetch(id).then((response) => {
+            this.set(response.data);
+        });
+    }
+    save() {
+        this.sync.save(this.attributes.getAll())
+            .then((response) => {
+            this.trigger('save');
+        })
+            .catch(() => {
+            this.trigger('error');
+        });
+    }
 }
 exports.User = User;

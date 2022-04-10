@@ -11,5 +11,8 @@ class Attributes {
     set(update) {
         Object.assign(this.data, update);
     }
+    getAll() {
+        return this.data;
+    }
 }
 exports.Attributes = Attributes;

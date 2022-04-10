@@ -1,11 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("./models/User");
-const user = new User_1.User({ name: 'Test', age: 2 });
-// user.set({ name: 'Fahim', age: 26 });
-// user.save();
-user.on('change', () => {
-    console.log('Change!');
+const user = new User_1.User({ id: 1, name: 'Fizan', age: 0 });
+user.on('save', () => {
+    console.log(user);
 });
-user.set({ name: 'Fahim' });
-console.log(user.get('name'));
+user.save();
