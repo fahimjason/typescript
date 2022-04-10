@@ -5,8 +5,12 @@ const user = new User({ name: 'Test', age: 2 });
 // user.set({ name: 'Fahim', age: 26 });
 // user.save();
 
-user.events.on('change', () => {
+
+
+user.on('change', () => {
     console.log('Change!')
 });
 
-user.events.trigger('change');
+user.set({ name: 'Fahim' })
+
+console.log(user.get('name'));

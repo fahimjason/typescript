@@ -6,19 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Sync = void 0;
 const axios_1 = __importDefault(require("axios"));
 class Sync {
-    fetch() {
-        axios_1.default.get(`http://localhost:3000/users/${this.get('id')}`)
-            .then((response) => {
-            this.set(response.data);
-        });
+    constructor(rootUrl) {
+        this.rootUrl = rootUrl;
     }
-    save() {
-        const id = this.get('id');
+    fetch(id) {
+        return axios_1.default.get(`${this.rootUrl}/${id}`);
+    }
+    save(data) {
+        const { id } = data;
         if (id) {
-            axios_1.default.put(`http://localhost:3000/users/${id}`, this.data);
+            return axios_1.default.put(`${this.rootUrl}/${id}`, data);
         }
         else {
-            axios_1.default.post(`http://localhost:3000/users`, this.data);
+            return axios_1.default.post(`${this.rootUrl}`, data);
         }
     }
 }
