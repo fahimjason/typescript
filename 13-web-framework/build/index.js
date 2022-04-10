@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = require("./models/User");
-const user = User_1.User.buildUser({ id: 1 });
-user.on('change', () => {
-    console.log(user);
+const Collection_1 = require("./models/Collection");
+const collection = new Collection_1.Collection('http://localhost:3000/users');
+collection.on('change', () => {
+    console.log(collection);
 });
-user.fetch();
+collection.fetch();
