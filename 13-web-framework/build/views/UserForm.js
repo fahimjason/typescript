@@ -7,8 +7,10 @@ class UserForm {
         this.model = model;
         this.onSetNameClick = () => {
             const input = this.parent.querySelector('input');
-            const name = input.value;
-            this.model.set({ name });
+            if (input) {
+                const name = input.value;
+                this.model.set({ name });
+            }
         };
         this.onSetAgeClick = () => {
             this.model.setRandomAge();
