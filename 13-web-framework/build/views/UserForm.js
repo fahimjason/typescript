@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserForm = void 0;
-class UserForm {
-    constructor(parent, model) {
-        this.parent = parent;
-        this.model = model;
+const View_1 = require("./View");
+class UserForm extends View_1.View {
+    constructor() {
+        super(...arguments);
         this.onSetNameClick = () => {
             const input = this.parent.querySelector('input');
             if (input) {
@@ -15,27 +15,12 @@ class UserForm {
         this.onSetAgeClick = () => {
             this.model.setRandomAge();
         };
-        this.bindModel();
-    }
-    bindModel() {
-        this.model.on('change', () => {
-            this.render();
-        });
     }
     eventsMap() {
         return {
             'click:.set-age': this.onSetAgeClick,
             'click:.set-name': this.onSetNameClick,
         };
-    }
-    bindEvents(fragment) {
-        const eventsMap = this.eventsMap();
-        for (let eventKey in eventsMap) {
-            const [eventName, selector] = eventKey.split(':');
-            fragment.querySelectorAll(selector).forEach(element => {
-                element.addEventListener(eventName, eventsMap[eventKey]);
-            });
-        }
     }
     template() {
         return `
@@ -48,13 +33,6 @@ class UserForm {
                 <button class="set-age">Set Random Age</button>
             </div>
         `;
-    }
-    render() {
-        this.parent.innerHTML = '';
-        const templateElement = document.createElement('template');
-        templateElement.innerHTML = this.template();
-        this.bindEvents(templateElement.content);
-        this.parent.append(templateElement.content);
     }
 }
 exports.UserForm = UserForm;
