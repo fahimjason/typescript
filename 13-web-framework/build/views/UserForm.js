@@ -5,6 +5,11 @@ class UserForm {
     constructor(parent, model) {
         this.parent = parent;
         this.model = model;
+        this.onSetNameClick = () => {
+            const input = this.parent.querySelector('input');
+            const name = input.value;
+            this.model.set({ name });
+        };
         this.onSetAgeClick = () => {
             this.model.setRandomAge();
         };
@@ -17,7 +22,8 @@ class UserForm {
     }
     eventsMap() {
         return {
-            'click:.set-age': this.onSetAgeClick
+            'click:.set-age': this.onSetAgeClick,
+            'click:.set-name': this.onSetNameClick,
         };
     }
     bindEvents(fragment) {
@@ -36,7 +42,7 @@ class UserForm {
                 <div>User Name: ${this.model.get('name')} </div>
                 <div>User Age: ${this.model.get('age')} </div>
                 <input/>
-                <button>Click Me</button>
+                <button class="set-name">Change Name</button>
                 <button class="set-age">Set Random Age</button>
             </div>
         `;
