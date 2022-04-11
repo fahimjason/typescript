@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Collection = void 0;
 const axios_1 = __importDefault(require("axios"));
-const User_1 = require("./User");
 const Eventing_1 = require("./Eventing");
 class Collection {
-    constructor(rootUrl) {
+    constructor(rootUrl, deserialize) {
         this.rootUrl = rootUrl;
+        this.deserialize = deserialize;
         this.models = [];
         this.events = new Eventing_1.Eventing();
     }
@@ -22,8 +22,7 @@ class Collection {
     fetch() {
         axios_1.default.get(this.rootUrl).then((response) => {
             response.data.forEach((value) => {
-                const user = User_1.User.buildUser(value);
-                this.models.push(user);
+                this.models.push(this.deserialize(value));
             });
             this.trigger('change');
         });
