@@ -1,9 +1,11 @@
 "use strict";
+// import { User } from './models/User';
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = require("./models/User");
-const Collection_1 = require("./models/Collection");
-const collection = new Collection_1.Collection('http://localhost:3000/users', (json) => User_1.User.buildUser(json));
-collection.on('change', () => {
-    console.log(collection);
-});
-collection.fetch();
+// const collection = User.buildUserCollection()
+// collection.on('change', () => {
+//     console.log(collection);
+// });
+// collection.fetch();
+const UserForm_1 = require("./views/UserForm");
+const userForm = new UserForm_1.UserForm(document.getElementById('root'));
+userForm.render();
