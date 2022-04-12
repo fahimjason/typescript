@@ -18,7 +18,7 @@ class ApiSync {
             return axios_1.default.put(`${this.rootUrl}/${id}`, data);
         }
         else {
-            return axios_1.default.post(`${this.rootUrl}`, data);
+            return axios_1.default.post(this.rootUrl, data);
         }
     }
 }

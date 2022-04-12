@@ -5,7 +5,14 @@ class View {
     constructor(parent, model) {
         this.parent = parent;
         this.model = model;
+        this.regions = {};
         this.bindModel();
+    }
+    regionsMap() {
+        return {};
+    }
+    eventsMap() {
+        return {};
     }
     bindModel() {
         this.model.on('change', () => {
@@ -21,11 +28,24 @@ class View {
             });
         }
     }
+    mapRegions(fragment) {
+        const regionsMap = this.regionsMap();
+        for (let key in regionsMap) {
+            const selector = regionsMap[key];
+            const element = fragment.querySelector(selector);
+            if (element) {
+                this.regions[key] = element;
+            }
+        }
+    }
+    onRender() { }
     render() {
         this.parent.innerHTML = '';
         const templateElement = document.createElement('template');
         templateElement.innerHTML = this.template();
         this.bindEvents(templateElement.content);
+        this.mapRegions(templateElement.content);
+        this.onRender();
         this.parent.append(templateElement.content);
     }
 }
