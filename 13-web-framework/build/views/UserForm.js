@@ -5,6 +5,9 @@ const View_1 = require("./View");
 class UserForm extends View_1.View {
     constructor() {
         super(...arguments);
+        this.onSaveClick = () => {
+            this.model.save();
+        };
         this.onSetNameClick = () => {
             const input = this.parent.querySelector('input');
             if (input) {
@@ -20,19 +23,18 @@ class UserForm extends View_1.View {
         return {
             'click:.set-age': this.onSetAgeClick,
             'click:.set-name': this.onSetNameClick,
+            'click:.save-model': this.onSaveClick
         };
     }
     template() {
         return `
-            <div>
-                <h1>User Form</h1>
-                <div>User Name: ${this.model.get('name')} </div>
-                <div>User Age: ${this.model.get('age')} </div>
-                <input/>
-                <button class="set-name">Change Name</button>
-                <button class="set-age">Set Random Age</button>
-            </div>
-        `;
+      <div>
+        <input placeholder="${this.model.get('name')}" />
+        <button class="set-name">Change Name</button>
+        <button class="set-age">Set Random Age</button>
+        <button class="save-model">Save User</button>
+      </div>
+    `;
     }
 }
 exports.UserForm = UserForm;
